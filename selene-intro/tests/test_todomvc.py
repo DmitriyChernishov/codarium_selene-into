@@ -15,12 +15,12 @@ def test_complete_todo():
     browser.all('#todo-list>li').should(have.exact_texts('a', 'b', 'c'))
 
     # toggle 'b'
-    browser.all('#todo-list>li').element_by(have.exact_text('b')).element('.toggle').click()
+    toggle_b = browser.element('li#ember11')
+    toggle_b.element('input.toggle').click()
 
 
     # completed todos should be b
-    browser.all('#todo-list>li').element_by(have.css_class('completed')).should(have.exact_text('b'))
-    browser.all('#todo-list>li: last-child').element_by(have.exact_text('b'))
+    toggle_b.element('label').should(have.exact_text('b'))
 
     # active todos should be a, c
-    browser.all('#todo-list>li').element_by(have.no.css_class('completed')).should(have.exact_texts('a', 'c'))
+    toggle_b.element('label').should(have.no.exact_texts('a', 'c'))
