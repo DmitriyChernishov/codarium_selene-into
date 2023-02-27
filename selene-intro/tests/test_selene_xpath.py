@@ -15,7 +15,7 @@ def test_complete_task():
     browser.element('//*[@id="todo-list"]//li[.//text()="b"]//*[contains(concat(" ", normalize-space(@class), " "),'
                     ' " toggle ")]').click()
 
-    browser.element('//*[@id="todo-list"]//*[contains(concat(" ", normalize-space(@class), " "),'
-                    ' " completed ")]').should(have.exact_text('b'))
-    browser.element('//*[@id="todo-list"]//*[contains(concat(" ", normalize-space(@class), " "),'
-                    ' " completed ")]').should(have.no.exact_texts('a', 'c'))
+    browser.element('//*[@id="todo-list"]//*[contains(concat(" ", normalize-space(@class), " "), " completed ")]')\
+        .should(have.exact_text('b'))
+    browser.all('//*[@id="todo-list"]//li[not(contains(concat(" ", normalize-space(@class), " "), " completed "))]')\
+        .should(have.exact_texts('a', 'c'))
