@@ -11,16 +11,15 @@ def test_complete_task():
 
     browser.all('//*[@id="todo-list"]//li').should(have.exact_texts('a', 'b', 'c'))
 
-    browser.element(f'//*[@id="todo-list"]//li[.//text()="b"]{xpath_by_class("toggle")}').click()
+    browser.element(f'//*[@id="todo-list"]//li[.//text()="b"]{contain_class("toggle")}').click()
 
-    browser.element('//*[@id="todo-list"]//*[contains(concat(" ", normalize-space(@class), " "), " completed ")]')\
-        .should(have.exact_text('b'))
-    browser.all('//*[@id="todo-list"]//li[not(contains(concat(" ", normalize-space(@class), " "), " completed "))]')\
-        .should(have.exact_texts('a', 'c'))
+    browser.element(f'//*[@id="todo-list"]{contain_class("completed")}').should(have.exact_text('b'))
+    browser.all(f'//*[@id="todo-list"]//li{not_contain_class("completed")}').should(have.exact_texts('a', 'c'))
 
 
-def xpath_by_class(class_name):
-    """
-    Returns an XPath selector for elements with the given class name.
-    """
-    return f'//*[contains(concat(" ", normalize-space(@class), " "), " {class_name} ")]'
+def contain_class(value):
+    return f'//*[contains(concat(" ", normalize-space(@class), " "), " {value} ")]'
+
+
+def not_contain_class(value):
+    return f'[not(contains(concat(" ", normalize-space(@class), " "), " {value} "))]'
