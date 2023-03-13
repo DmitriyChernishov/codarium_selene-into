@@ -1,5 +1,6 @@
-from selene import by, be, have
+from selene import have
 from selene.support.shared import browser
+from selene_intro.helpers import contain_class, not_contain_class
 
 
 def test_complete_task():
@@ -15,11 +16,3 @@ def test_complete_task():
 
     browser.element(f'//*[@id="todo-list"]{contain_class("completed")}').should(have.exact_text('b'))
     browser.all(f'//*[@id="todo-list"]//li{not_contain_class("completed")}').should(have.exact_texts('a', 'c'))
-
-
-def contain_class(value):
-    return f'//*[contains(concat(" ", normalize-space(@class), " "), " {value} ")]'
-
-
-def not_contain_class(value):
-    return f'[not(contains(concat(" ", normalize-space(@class), " "), " {value} "))]'
