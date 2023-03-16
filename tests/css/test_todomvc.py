@@ -11,6 +11,6 @@ def test_complete_todo():
     # When
     browser.element('#todo-list>li:nth-of-type(2) .toggle').click()
     # Then
-    browser.all('#todo-list>li').should(have.exact_texts('a', 'b', 'c'))
     browser.all('#todo-list>li.completed').should(have.exact_texts('b'))
     browser.all('#todo-list>li:not(.completed)').should(have.exact_texts('a', 'c'))
+    browser.all('#todo-list>li').should(have.exact_texts('a', 'b', 'c'))

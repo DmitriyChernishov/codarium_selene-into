@@ -12,6 +12,6 @@ def test_add_and_complete_todo():
     # When
     browser.element(f'//*[@id="todo-list"]//li[.//text()="b"]//*[{contain_class("toggle")}]').click()
     # Then
-    browser.all('//*[@id="todo-list"]//li').should(have.exact_texts('a', 'b', 'c'))
     browser.all(f'//*[@id="todo-list"]//*[{contain_class("completed")}]').should(have.exact_texts('b'))
     browser.all(f'//*[@id="todo-list"]//li[not({contain_class("completed")})]').should(have.exact_texts('a', 'c'))
+    browser.all('//*[@id="todo-list"]//li').should(have.exact_texts('a', 'b', 'c'))
