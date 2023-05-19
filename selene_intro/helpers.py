@@ -5,7 +5,7 @@ def contain_class(self, value):
 class XPathBuilder:
     @staticmethod
     def tag(tag_name):
-        return XPathBuilder(f"/{tag_name}")
+        return XPathBuilder("/*")
 
     def __init__(self, xpath=""):
         self.xpath = xpath
