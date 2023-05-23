@@ -15,6 +15,7 @@ def test_complete_todo_dsl():
     # Then
     browser.all(x.all().by(its.have_id('todo-list')).descendant().by(its.with_class('completed')).build())\
         .should(have.exact_texts('b'))
-    browser.all(x.all().by(its.have_id('todo-list')).child('li').by(f"[not({its.with_class('completed')})]").build())\
-        .should(have.exact_texts('a', 'c'))
+    #browser.all(x.all().by(its.have_id('todo-list')).child('li').by(f"not({its.with_class('completed')})").build())\
+    #    .should(have.exact_texts('a', 'c'))
+    browser.all(x.all().by(its.have_id('todo-list')).child('li').by(its.without_class('completed')).build()).should(have.exact_texts('a', 'c'))
     browser.all(x.all().by(its.have_id('todo-list')).child('li').build()).should(have.exact_texts('a', 'b', 'c'))

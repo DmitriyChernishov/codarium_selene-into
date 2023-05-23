@@ -12,7 +12,7 @@ class X:
         return self
 
     def by(self, xpath):
-        self.xpath += f"{xpath}"
+        self.xpath += f"[{xpath}]"
         return self
 
     def child(self, child="*"):
