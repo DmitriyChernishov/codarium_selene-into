@@ -10,9 +10,14 @@ class Its:
         self.xpath += f'contains(@class, "{class_name}")'
         return f'contains(@class, "{class_name}")'
 
+    """
     def without_class(self, class_name):
         self.xpath += f'not(contains(@class, "{class_name}"))'
         return f'not(contains(@class, "{class_name}"))'
+    """
+
+    def by_not(self, condition):
+        return f'not({condition})'
 
     def with_text(self, text):
         self.xpath += f'[.//text()="{text}"]'

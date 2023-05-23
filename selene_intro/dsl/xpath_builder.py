@@ -20,5 +20,4 @@ class X:
         return self
 
     def build(self):
-        print(self.xpath)
         return self.xpath
