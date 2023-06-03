@@ -7,8 +7,8 @@ class X:
     def all():
         return X("//*")
 
-    def descendant(self, tag='//*'):
-        self.xpath += f"{tag}"
+    def descendant(self, tag=''):
+        self.xpath += f"//*{tag}"
         return self
 
     def by(self, selector):
@@ -19,7 +19,7 @@ class X:
         self.xpath += f"[not({selector})]"
         return self
 
-    def child(self, value="*"):
+    def child(self, value):
         self.xpath += f"/{value}"
         return self
 

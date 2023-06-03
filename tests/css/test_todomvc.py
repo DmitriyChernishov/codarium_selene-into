@@ -14,3 +14,5 @@ def test_complete_todo():
     browser.all('#todo-list>li.completed').should(have.exact_texts('b'))
     browser.all('#todo-list>li:not(.completed)').should(have.exact_texts('a', 'c'))
     browser.all('#todo-list>li').should(have.exact_texts('a', 'b', 'c'))
+    # End
+    browser.config.quit_driver()
